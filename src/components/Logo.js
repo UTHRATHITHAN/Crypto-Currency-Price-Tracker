@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoSvg from "../assets/logo.svg";
+import { FaEthereum } from "react-icons/fa";
+
 
 const Logo = () => {
   return (
@@ -8,13 +9,11 @@ const Logo = () => {
       to="/"
       className="
      absolute top-[1.5rem] left-[1.5rem] [text-decoration:none]
-text-lg text-cyan flex items-center
+text-lg text-white flex items-center md:px-[60px] 
      "
     >
-      <img src={logoSvg} alt="CryptoBucks"  />
-      <span>Cryptocurrency Tracker</span>
-
-      
+      <FaEthereum />
+      <span  >Cryptocurrency Tracker</span>
     </Link>
   );
 };

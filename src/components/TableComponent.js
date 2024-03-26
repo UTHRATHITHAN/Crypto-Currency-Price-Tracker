@@ -25,11 +25,10 @@ const SaveBtn = ({ data }) => {
     >
       <svg
         className={`w-[1.5rem] ml-1.5 
-                      ${
-                        allCoins.includes(data.id)
-                          ? "fill-cyan"
-                          : "fill-gray-100"
-                      }
+                      ${allCoins.includes(data.id)
+            ? "fill-cyan"
+            : "fill-gray-100"
+          }
                        hover:fill-cyan`}
         width="30"
         height="30"
@@ -51,11 +50,11 @@ const SaveBtn = ({ data }) => {
 };
 
 const TableComponent = () => {
-  let { cryptoData, currency,error } = useContext(CryptoContext);
+  let { cryptoData, currency, error } = useContext(CryptoContext);
 
   return (
     <>
-      <div className="flex flex-col mt-9 border border-gray-100 rounded">
+      <div className="flex flex-col mt-9  border-gray-100 rounded">
         {cryptoData ? (
           <table className="w-full table-auto">
             <thead
@@ -67,11 +66,11 @@ const TableComponent = () => {
                 <th className="py-1">asset</th>
                 <th className="py-1">name</th>
                 <th className="py-1">price</th>
-                <th className="py-1">total volume</th>
-                <th className="py-1">market cap change</th>
-                <th className="py-1 lg:table-cell hidden">1H</th>
-                <th className="py-1 lg:table-cell hidden">24H</th>
-                <th className="py-1 lg:table-cell hidden">7D</th>
+                <th className="py-1 hidden md:table-cell">total volume</th>
+                <th className="py-1 hidden md:table-cell">market cap change</th>
+                <th className="py-1 lg:table-cell hidden ">1H</th>
+                <th className="py-1 lg:table-cell hidden ">24H</th>
+                <th className="py-1 lg:table-cell hidden ">7D</th>
               </tr>
             </thead>
             <tbody>
@@ -79,43 +78,45 @@ const TableComponent = () => {
                 return (
                   <tr
                     key={data.id}
-                    className="text-center text-base border-b border-gray-100 
-            hover:bg-gray-200 last:border-b-0
+                    className=" text-center text-base border-b border-gray-100 
+            hover:bg-zinc-800 hover:backdrop-blur-lg last:border-b-0 space-x-4
             "
                   >
-                    <td className="py-4 flex items-center uppercase">
+                    <td className="py-4 flex items-center  justify-start uppercase gap-x-3 md:gap-x-6 w-20 pl-6" >
                       <SaveBtn data={data} />
                       <img
-                        className="w-[1.2rem] h-[1.2rem] mx-1.5"
+                        className="w-[1.2rem] h-[1.2rem] "
                         src={data.image}
                         alt={data.name}
                       />
                       <span>
-                        <Link to={`/${data.id}`} className="cursor-pointer">
+                        <Link to={`/${data.id}`} className="cursor-pointer ">
                           {data.symbol}
                         </Link>
                       </span>
+
+
                     </td>
-                    <td className="py-4">
+                    <td className="py-4 ">
                       <Link to={`/${data.id}`} className="cursor-pointer">
                         {data.name}
                       </Link>
                     </td>
-                    <td className="py-4">
+                    <td className="py-4 w-28 md:w-52 ">
                       {new Intl.NumberFormat("en-IN", {
                         style: "currency",
                         currency: currency,
                       }).format(data.current_price)}
                     </td>
-                    <td className="py-4">{data.total_volume}</td>
-                    <td className="py-4">
+                    <td className="py-4  md:table-cell hidden">{data.total_volume}</td>
+                    <td className="py-4 w-52 md:table-cell hidden">
                       {data.market_cap_change_percentage_24h}%
                     </td>
                     <td
                       className={
                         data.price_change_percentage_1h_in_currency > 0
                           ? "text-green py-4 lg:table-cell hidden "
-                          : "text-red py-4  lg:table-cell hidden"
+                          : "text-red py-4  lg:table-cell hidden "
                       }
                     >
                       {Number(
@@ -125,8 +126,8 @@ const TableComponent = () => {
                     <td
                       className={
                         data.price_change_percentage_24h_in_currency > 0
-                          ? "text-green py-4 lg:table-cell hidden"
-                          : "text-red py-4  lg:table-cell hidden"
+                          ? "text-green py-4 lg:table-cell hidden "
+                          : "text-red py-4  lg:table-cell hidden "
                       }
                     >
                       {Number(
@@ -136,8 +137,8 @@ const TableComponent = () => {
                     <td
                       className={
                         data.price_change_percentage_7d_in_currency > 0
-                          ? "text-green py-4 lg:table-cell hidden"
-                          : "text-red py-4  lg:table-cell hidden"
+                          ? "text-green py-4 lg:table-cell hidden "
+                          : "text-red py-4  lg:table-cell hidden "
                       }
                     >
                       {Number(
@@ -152,7 +153,7 @@ const TableComponent = () => {
         ) : (!error.data && !error.search) ? (
           <div className="w-full min-h-[50vh] flex justify-center items-center">
             <div
-              className="w-8 h-8 border-4 border-solid border-cyan rounded-full border-b-gray-200 animate-spin"
+              className="w-8 h-8 border-4 border-solid border-white rounded-full border-b-zinc-800 animate-spin"
               role="status"
             />
             <span className="text-base ml-2">please wait...</span>
@@ -162,16 +163,16 @@ const TableComponent = () => {
             {error.data
               ? error.data
               : error.search
-              ? error.search
-              : "Something unexpected happened!"}
-              {/* Here we have use multi chain conditions using ternary operator/ this is not
+                ? error.search
+                : "Something unexpected happened!"}
+            {/* Here we have use multi chain conditions using ternary operator/ this is not
               covered in the video but for the example and some improvements */}
           </h1>
         ) : null}
       </div>
       <div className="flex items-center justify-between mt-4 capitalize h-[2rem]">
         <span>
-         {/* Data provided by{" "}
+          {/* Data provided by{" "}
           <a
             className="text-cyan"
             href="http://www.coingecko.com"

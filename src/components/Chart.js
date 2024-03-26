@@ -39,10 +39,10 @@ const ChartComponent = ({ data, currency, type }) => {
         <Line
           type="monotone"
           dataKey={type}
-          stroke="#14ffec"
+          stroke="white"
           strokeWidth={"1px"}
         />
-        <CartesianGrid stroke="#323232" />
+        <CartesianGrid stroke="#FDFDFD" />
         <XAxis dataKey="date" hide />
         <YAxis dataKey={type} hide domain={["auto", "auto"]} />
         <Tooltip
@@ -98,8 +98,8 @@ const Chart = ({ id }) => {
         <button
           className={`text-sm py-0.5 px-1.5 ml-2 bg-opacity-25 rounded capitalize ${
             type === "prices"
-              ? "bg-cyan text-cyan"
-              : "bg-gray-200 text-gray-100"
+              ? "bg-zinc-300 text-white"
+              : " text-white"
           }`}
           onClick={() => setType("prices")}
         >
@@ -108,8 +108,8 @@ const Chart = ({ id }) => {
         <button
           className={`text-sm py-0.5 px-1.5 ml-2 bg-opacity-25 rounded capitalize ${
             type === "market_caps"
-              ? "bg-cyan text-cyan"
-              : "bg-gray-200 text-gray-100"
+            ? "bg-zinc-300 text-white"
+              : " text-white"
           }`}
           onClick={() => setType("market_caps")}
         >
@@ -118,8 +118,8 @@ const Chart = ({ id }) => {
         <button
           className={`text-sm py-0.5 px-1.5 ml-2 bg-opacity-25 rounded capitalize ${
             type === "total_volumes"
-              ? "bg-cyan text-cyan"
-              : "bg-gray-200 text-gray-100"
+            ? "bg-zinc-300 text-white"
+              : " text-white"
           }`}
           onClick={() => setType("total_volumes")}
         >
@@ -128,7 +128,8 @@ const Chart = ({ id }) => {
 
         <button
           className={`text-sm py-0.5 px-1.5 ml-2 bg-opacity-25 rounded capitalize ${
-            days === 7 ? "bg-cyan text-cyan" : "bg-gray-200 text-gray-100"
+            days === 7   ? "bg-zinc-300 text-white"
+            : " text-white"
           }`}
           onClick={() => setDays(7)}
         >
@@ -136,7 +137,8 @@ const Chart = ({ id }) => {
         </button>
         <button
           className={`text-sm py-0.5 px-1.5 ml-2 bg-opacity-25 rounded capitalize ${
-            days === 14 ? "bg-cyan text-cyan" : "bg-gray-200 text-gray-100"
+            days === 14   ? "bg-zinc-300 text-white"
+            : " text-white"
           }`}
           onClick={() => setDays(14)}
         >
@@ -144,7 +146,8 @@ const Chart = ({ id }) => {
         </button>
         <button
           className={`text-sm py-0.5 px-1.5 ml-2 bg-opacity-25 rounded capitalize ${
-            days === 30 ? "bg-cyan text-cyan" : "bg-gray-200 text-gray-100"
+            days === 30   ? "bg-zinc-300 text-white"
+            : " text-white"
           }`}
           onClick={() => setDays(30)}
         >

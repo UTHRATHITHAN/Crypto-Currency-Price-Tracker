@@ -10,17 +10,17 @@ const TrendingCoin = ({ data }) => {
 
   return (
     <div
-      className="w-[40%] bg-gray-200 mb-12
-    last:mb-0 rounded-lg p-4 relative cursor-pointer
-    hover:bg-gray-100 hover:bg-opacity-40
+      className="w-[80%] md:w-[40%] bg-gray-200 mb-12
+    last:mb-0 rounded-lg p-4 gap-x-4 relative cursor-pointer
+    hover:bg-gray-300
     "
       onClick={() => getCoinDetails(data.id)}
     >
       {data ? (
         <>
           <h3 className="txt-base flex items-center my-0.5">
-            <span className="text-gray-100 capitalize">name:&nbsp;</span>
-            <span className="text-cyan">{data.name}</span>
+            <span className="text-black  capitalize">name:&nbsp;</span>
+            <span className="text-black font-bold text-md">{data.name}</span>
             <img
               src={data.small}
               alt={data.name}
@@ -29,16 +29,16 @@ const TrendingCoin = ({ data }) => {
           </h3>
 
           <h3 className="txt-base flex items-center my-0.5">
-            <span className="text-gray-100 capitalize">
+            <span className="text-black capitalize">
               market cap rank:&nbsp;
             </span>
-            <span className="text-cyan">{data.market_cap_rank}</span>
+            <span className="text-black font-bold text-md">{data.market_cap_rank}</span>
           </h3>
           <h3 className="txt-base flex items-center my-0.5">
-            <span className="text-gray-100 capitalize">
+            <span className="text-black capitalize">
               price (in btc):&nbsp;
             </span>
-            <span className="text-cyan">
+            <span className="text-black font-bold text-md">
               {new Intl.NumberFormat("en-IN", {
                 style: "currency",
                 currency: "btc",
@@ -48,15 +48,15 @@ const TrendingCoin = ({ data }) => {
           </h3>
 
           <h3 className="txt-base flex items-center my-0.5">
-            <span className="text-gray-100 capitalize">score:&nbsp;</span>
-            <span className="text-cyan">{data.score}</span>
+            <span className="text-black capitalize">score:&nbsp;</span>
+            <span className="text-black font-bold text-md">{data.score}</span>
           </h3>
 
           <img
             src={data.large}
             alt={data.name}
             className="w-[35%] h-auto rounded-full absolute top-2/4 -right-12
--translate-y-2/4
+-translate-y-2/4 
 "
           />
         </>

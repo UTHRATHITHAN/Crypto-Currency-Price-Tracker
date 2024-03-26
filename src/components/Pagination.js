@@ -1,7 +1,9 @@
 import React, { useContext, useRef } from "react";
-import paginationArrow from "../assets/pagination-arrow.svg";
+
 import { CryptoContext } from "./../context/CryptoContext";
-import submitIcon from "../assets/submit-icon.svg";
+
+import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import { BsThreeDots } from "react-icons/bs";
 
 const PerPage = () => {
   const { setPerPage } = useContext(CryptoContext);
@@ -18,7 +20,7 @@ const PerPage = () => {
 
   return (
     <form
-      className="relative flex items-center font-nunito
+      className="pl-3 md:pl-0 relative flex items-center gap-x-2 font-nunito
           mr-12
           "
       onSubmit={handleSubmit}
@@ -26,7 +28,7 @@ const PerPage = () => {
       <label
         htmlFor="perpage"
         className="relative flex justify-center items-center
-          mr-2 font-bold
+          mr-2  md:font-bold
           "
       >
         per page:{" "}
@@ -38,13 +40,17 @@ const PerPage = () => {
         max={250}
         ref={inputRef}
         placeholder="10"
-        className="w-16 rounded bg-gray-200 placeholder:text-gray-100
+        className="w-20 rounded bg-zinc-900 placeholder:text-zinc-500
      pl-2 required outline-0 border border-transparent 
      focus:border-cyan leading-4
+     remove-arrow
      "
+     readonly
       />
       <button type="submit" className="ml-1 cursor-pointer">
-        <img src={submitIcon} alt="submit" className="w-full h-auto" />
+  
+        <FaRegArrowAltCircleRight alt="submit" className="md:w-6 md:h-6  w-5 h-5"/>
+
       </button>
     </form>
   );
@@ -90,27 +96,24 @@ const Pagination = () => {
 
   if (cryptoData && cryptoData.length >= perPage) {
     return (
-      <div className="flex items-center">
+      <div className="flex items-center justify-center md:justify-end w-full md:gap-x-16 px-2">
         <PerPage />
-        <ul className="flex items-center justify-end text-sm">
-          <li className="flex items-center">
-            <button className="outline-0 hover:text-cyan w-8" onClick={prev}>
-              <img
-                className="w-full h-auto rotate-180"
-                src={paginationArrow}
-                alt="left"
-              />
+        <ul className="flex items-center justify-end text-sm  gap-x-2 md:gap-x-4">
+          <li className="flex items-center justify-between">
+            <button className="outline-0 hover:text-cyan " onClick={prev}>
+                      <FaRegArrowAltCircleRight alt="left" className="md:w-8 md:h-8  w-5 h-5 rotate-180"/>
+
             </button>
           </li>
 
           {page + 1 === TotalNumber || page === TotalNumber ? (
             <li>
-              {" "}
+       
               <button
                 onClick={multiStepPrev}
-                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center text-lg    "
+                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center text-lg"
               >
-                ...
+                               <BsThreeDots />
               </button>
             </li>
           ) : null}
@@ -119,17 +122,16 @@ const Pagination = () => {
             <li>
               <button
                 onClick={prev}
-                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center bg-gray-200 mx-1.5"
+                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center bg-zinc-800"
               >
-                {" "}
-                {page - 1}{" "}
+                {page - 1}
               </button>
             </li>
           ) : null}
           <li>
             <button
               disabled
-              className="ouline-0  rounded-full w-8 h-8 flex items-center justify-center bg-cyan text-gray-300 mx-1.5"
+              className="ouline-0  rounded-full w-8 h-8 flex items-center justify-center bg-zinc-800 text-white "
             >
               {page}
             </button>
@@ -139,7 +141,7 @@ const Pagination = () => {
             <li>
               <button
                 onClick={next}
-                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center bg-gray-200 mx-1.5"
+                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center bg-black "
               >
                 {page + 1}
               </button>
@@ -147,13 +149,12 @@ const Pagination = () => {
           ) : null}
 
           {page + 1 !== TotalNumber && page !== TotalNumber ? (
-            <li>
-              {" "}
+            <li >
               <button
                 onClick={multiStepNext}
-                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center text-lg    "
+                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center text-lg"
               >
-                ...
+               <BsThreeDots />
               </button>
             </li>
           ) : null}
@@ -162,7 +163,7 @@ const Pagination = () => {
             <li>
               <button
                 onClick={() => setPage(TotalNumber)}
-                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center bg-gray-200 mx-1.5"
+                className="ouline-0 hover:text-cyan  rounded-full w-8 h-8 flex items-center justify-center bg-black "
               >
                 {TotalNumber}
               </button>
@@ -170,11 +171,8 @@ const Pagination = () => {
           ) : null}
           <li>
             <button className="outline-0 hover:text-cyan w-8" onClick={next}>
-              <img
-                className="w-full h-auto"
-                src={paginationArrow}
-                alt="right"
-              />
+            <FaRegArrowAltCircleRight alt="left" className="md:w-8 md:h-8  w-5 h-5 "/>
+
             </button>
           </li>
         </ul>

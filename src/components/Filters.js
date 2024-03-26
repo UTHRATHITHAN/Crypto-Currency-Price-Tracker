@@ -1,9 +1,8 @@
 import React, { useContext, useRef } from "react";
 import Search from "./Search";
-import submitIcon from "../assets/submit-icon.svg";
-import selectIcon from "../assets/select-icon.svg";
-
 import { CryptoContext } from "./../context/CryptoContext";
+import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import { TbTriangleInvertedFilled } from "react-icons/tb";
 
 const Filters = () => {
   let { setCurrency, setSortBy, resetFunction } = useContext(CryptoContext);
@@ -29,6 +28,8 @@ const Filters = () => {
     "
     >
       <Search />
+      <div className="hidden md:block">
+
       <div className="flex mr-7">
         <form
           className="relative flex items-center font-nunito
@@ -38,8 +39,8 @@ const Filters = () => {
         >
           <label
             htmlFor="currency"
-            className="relative flex justify-center items-center
-          mr-2 font-bold
+            className="relative flex justify-center gap-x-2 items-center
+          mr-2 font-bold 
           "
           >
             currency:{" "}
@@ -49,22 +50,26 @@ const Filters = () => {
             name="currency"
             ref={currencyRef}
             placeholder="usd"
-            className="w-16 rounded bg-gray-200 placeholder:text-gray-100
+            className="w-24 rounded bg-zinc-800 placeholder:text-zinc-500
      pl-2 required outline-0 border border-transparent 
      focus:border-cyan leading-4
      "
           />
           <button type="submit" className="ml-1 cursor-pointer">
-            <img src={submitIcon} alt="submit" className="w-full h-auto" />
+            {/* <img src={submitIcon}  /> */}
+            <FaRegArrowAltCircleRight alt="submit" className="w-6 h-6"/>
+
           </button>
         </form>
 
+<div className="hidden lg:block">
+  <div className="flex">
         <label className="relative flex justify-center items-center">
           <span className="font-bold mr-2">sort by: </span>
           <select
             name="sortby"
-            className="rounded bg-gray-200 text-base 
-         pl-2 pr-10 py-0.5 leading-4 capitalize focus:outline-0
+            className="rounded bg-zinc-800 text-zinc-500 text-base 
+         pl-2 pr-10 py-0.5 leading-4 capitalize focus:outline-0 
          "
             onClick={handleSort}
           >
@@ -77,17 +82,14 @@ const Filters = () => {
             <option value="gecko_desc">gecko desc</option>
             <option value="gecko_asc">gecko asc</option>
           </select>
-          <img
-            src={selectIcon}
-            alt="submit"
-            className="w-[1rem] h-auto
+          
+           <TbTriangleInvertedFilled alt="submit" className="w-[1rem] h-auto
          absolute right-1 top-2 pointer-events-none
-         "
-          />
+         " /> 
         </label>
         <button
           className="w-[2rem] ml-4 hover:scale-110 transition-all transition-ease
-        relative
+        relative hidden lg:block
         "
           onClick={resetFunction}
         >
@@ -96,7 +98,7 @@ const Filters = () => {
             width="1em"
             height="1em"
             viewBox="0 0 24 24"
-            className="w-full h-full fill-cyan"
+            className="w-full h-full fill-white"
             style={{
               msTransform: "rotate(360deg)",
               WebkitTransform: "rotate(360deg)",
@@ -108,6 +110,7 @@ const Filters = () => {
             <path fill="rgba(0, 0, 0, 0)" d="M0 0h24v24H0z" />
           </svg>
         </button>
+      </div></div></div>
       </div>
     </div>
   );
