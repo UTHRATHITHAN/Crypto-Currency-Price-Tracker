@@ -10,6 +10,7 @@ import Crypto from './pages/Crypto';
 import Trending from './pages/Trending';
 import Saved from './pages/Saved';
 import CryptoDetails from './components/CryptoDetails';
+import { Analytics } from '@vercel/analytics/react';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <Analytics />
   </React.StrictMode>
 );
 
